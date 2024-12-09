@@ -60,14 +60,30 @@ export const login = async(req:Request, res:Response):Promise<void> => {
             })
             return
         }
+
         res.status(200).json({
             msg:"exito al iniciar sesion" , user
         })
         return
+        
     } catch (error) {
        res.status(400).json({
         msg:"ups un errorsito"
        }) 
        return
+    }
+}
+
+export const getAllUsers = async (req:Request, res:Response):Promise<void> =>{
+    try {
+        const allUsers = await UserModel.find();
+        if(!allUsers){
+            res.status(400).json({msg:"no hay usuarios registrados"})
+            return
+        }
+        res.status(200).json({msg:"usuarios obtenidos con exito", allUsers})
+        return
+    } catch (error) {
+        res.status(500).json({msg:"error al obtener usuarios"})
     }
 }

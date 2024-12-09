@@ -1,7 +1,7 @@
 import { model, Schema } from "mongoose";
 import { ITask } from "../GlobalTypes";
 
-
+ 
 const TaskSchema = new Schema<ITask>({
     title:{
         type:String,
